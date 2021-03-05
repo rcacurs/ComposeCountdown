@@ -29,7 +29,7 @@ import com.example.androiddevchallenge.ui.theme.MyTheme
 
 private const val TAG = "Main Activity"
 class MainActivity : AppCompatActivity() {
-    val viewModel : TimerViewModel by viewModels()
+    val viewModel: TimerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
