@@ -16,7 +16,9 @@
 package com.example.androiddevchallenge
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -25,9 +27,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
+private const val TAG = "Main Activity"
 class MainActivity : AppCompatActivity() {
+    val viewModel : TimerViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "On create!")
+
+        viewModel.setRemainingMillis(5000L)
+        viewModel.start()
         setContent {
             MyTheme {
                 MyApp()
