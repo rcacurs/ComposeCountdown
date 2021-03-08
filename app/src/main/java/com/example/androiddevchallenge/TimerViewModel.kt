@@ -23,27 +23,55 @@ import androidx.lifecycle.ViewModel
 
 private const val TAG = "Timer View Model"
 class TimerViewModel : ViewModel() {
+    private val _finished = MutableLiveData<Boolean>(false)
+    val finished: LiveData<Boolean>
+        get() = _finished
 
     private val _remainingTime = MutableLiveData<Long>(10000L)
-
     val remainingTime: LiveData<Long>
         get() = _remainingTime
+
+    private val _remainingSeconds = MutableLiveData<Long>(0L)
+    val remainingSeconds: LiveData<Long>
+        get() = _remainingSeconds
+
+    private val _remainingMilli = MutableLiveData<Long>(0L)
+    val remainingMilli: LiveData<Long>
+        get() = _remainingMilli
+
+    private val _remainingMinutes = MutableLiveData<Long>(0L)
+    val remainingMinutes: LiveData<Long>
+        get() = _remainingMinutes
 
     private lateinit var timer: CountDownTimer
 
     fun setRemainingMillis(remaining: Long) {
+        _finished.value = false
         _remainingTime.value = remaining
+        _remainingMilli.value = remaining % 1000
+        _remainingSeconds.value = (remaining / 1000) % 60
+        _remainingMinutes.value = (remaining / 1000) / 60
     }
 
     fun start() {
-        timer = object : CountDownTimer(remainingTime.value!!, 1000L) {
+        val step = 25L
+        _finished.value = false
+        timer = object : CountDownTimer(remainingTime.value!!, step) {
             override fun onFinish() {
+                _finished.value = true
+                _remainingTime.value = 0L
+                _remainingSeconds.value = 0L
+                _remainingMilli.value = 0L
+                _remainingSeconds.value = 0L
                 Log.d(TAG, "Timer finished!")
             }
 
             override fun onTick(millisUntilFinished: Long) {
                 Log.d(TAG, "Timer clicked, remaining $millisUntilFinished")
-                _remainingTime.value = millisUntilFinished
+                _remainingTime.value = _remainingTime.value!! - step
+                _remainingMilli.value = _remainingTime.value!! % 1000
+                _remainingSeconds.value = (_remainingTime.value!! / 1000) % 60
+                _remainingMinutes.value = (_remainingTime.value!! / 1000) / 60
             }
         }
         timer.start()
