@@ -27,7 +27,7 @@ class TimerViewModel : ViewModel() {
     val finished: LiveData<Boolean>
         get() = _finished
 
-    private val _remainingTime = MutableLiveData<Long>(10000L)
+    private val _remainingTime = MutableLiveData<Long>(0L)
     val remainingTime: LiveData<Long>
         get() = _remainingTime
 
@@ -44,6 +44,14 @@ class TimerViewModel : ViewModel() {
         get() = _remainingMinutes
 
     private lateinit var timer: CountDownTimer
+
+//    fun setRemainingMinutes(minutes: Long?) {
+//        setRemainingMillis((minutes ?: 0) * 1000 * 60)
+//    }
+//
+//    fun setRemainingSeconds(seconds: Long?) {
+//        setRemainingMillis((seconds ?: 0 ) * 1000)
+//    }
 
     fun setRemainingMillis(remaining: Long) {
         _finished.value = false
@@ -75,5 +83,13 @@ class TimerViewModel : ViewModel() {
             }
         }
         timer.start()
+    }
+
+    fun stop() {
+        timer.cancel()
+    }
+
+    fun clear() {
+        setRemainingMillis(0L)
     }
 }
