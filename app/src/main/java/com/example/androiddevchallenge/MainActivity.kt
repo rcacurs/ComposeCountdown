@@ -70,9 +70,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "On create!")
-
-        // viewModel.setRemainingMillis(5000L)
-//        viewModel.start()
         setContent {
             MyTheme {
                 MyApp(viewModel)
