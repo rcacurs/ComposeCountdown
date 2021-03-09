@@ -1,4 +1,4 @@
-# Put title of your app here
+# Compose Countdown
 
 <!--- Replace <OWNER> with your Github Username and <REPOSITORY> with the name of your repository. -->
 <!--- You can find both of these in the url bar when you open your repository in github. -->
@@ -7,12 +7,16 @@
 
 ## :scroll: Description
 This app was built for Week 2 #AndroidDevChallenge. The task was to built the countdown timer, 
-entirely using Jetpack Compose
+entirely using Jetpack Compose. Applications contains single screen with timer display and the controls.
+The countdown time can be set by clicking on the timer screen, and the tex fields will appear to enter
+minutes and seconds. When timer runs out confetti salute is started!
 
 
 ## :bulb: Motivation and Context
-<!--- Optionally point readers to interesting parts of your submission. -->
-<!--- What are you especially proud of? -->
+I am now starting to get back into Android development, and want to learn the upcomming Jetpack Compose
+library. From my first experience I really loved building the UI using compose, because it really
+allows to build highly dynamic UI, which makes the experience so much more fun! It was really fun to
+learn about state in composable functions,stateless and stateful composables and hoisting. 
 
 
 ## :camera_flash: Screenshots
